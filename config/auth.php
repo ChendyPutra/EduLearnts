@@ -35,7 +35,9 @@ return [
     |
     */
 
-   'guards' => [
+  // config/auth.php
+
+'guards' => [
     'web' => [
         'driver' => 'session',
         'provider' => 'users',

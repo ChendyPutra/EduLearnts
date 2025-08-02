@@ -8,7 +8,7 @@
     <div class="bg-green-100 text-green-700 px-4 py-2 mb-4 rounded">{{ session('success') }}</div>
   @endif
 
-  <a href="{{ route('quizzes.create', $module) }}"
+  <a href="{{ route('admin.quizzes.create', $module) }}"
      class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded mb-4 inline-block">
     + Tambah Soal
   </a>
@@ -31,8 +31,8 @@
       @endif
 
       <div class="mt-3 flex gap-4 text-sm">
-        <a href="{{ route('quizzes.edit', [$module, $quiz]) }}" class="text-blue-500 hover:underline">Edit</a>
-        <form action="{{ route('quizzes.destroy', [$module, $quiz]) }}" method="POST"
+        <a href="{{ route('admin.quizzes.edit', [$module, $quiz]) }}" class="text-blue-500 hover:underline">Edit</a>
+        <form action="{{ route('admin.quizzes.destroy', [$module, $quiz]) }}" method="POST"
               onsubmit="return confirm('Yakin hapus soal ini?')" class="inline-block">
           @csrf @method('DELETE')
           <button class="text-red-500 hover:underline">Hapus</button>

@@ -34,7 +34,7 @@ class QuizController extends Controller
 
         $module->quizzes()->create($request->all());
 
-        return redirect()->route('quizzes.index', $module)->with('success', 'Soal berhasil ditambahkan.');
+        return redirect()->route('admin.quizzes.index', $module)->with('success', 'Soal berhasil ditambahkan.');
     }
 
     public function edit(Module $module, Quiz $quiz)

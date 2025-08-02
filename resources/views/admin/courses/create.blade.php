@@ -4,7 +4,7 @@
 <div class="max-w-xl mx-auto bg-white p-6 rounded shadow">
   <h2 class="text-xl font-bold text-indigo-700 mb-4">Tambah Course</h2>
 
-  <form method="POST" action="{{ route('courses.store') }}">
+  <form method="POST" action="{{ route('admin.courses.store') }}">
     @csrf
 
     <div class="mb-4">

@@ -4,7 +4,7 @@
 <div class="max-w-2xl mx-auto bg-white p-6 rounded shadow">
   <h2 class="text-xl font-bold text-indigo-700 mb-4">Tambah Soal Kuis</h2>
 
-  <form method="POST" action="{{ route('quizzes.store', $module) }}">
+<form action="{{ route('admin.quizzes.store') }}" method="POST">
     @csrf
 
     <div class="mb-4">

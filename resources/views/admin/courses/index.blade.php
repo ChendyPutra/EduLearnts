@@ -8,7 +8,7 @@
     <div class="bg-green-100 text-green-700 p-2 rounded mb-4">{{ session('success') }}</div>
   @endif
 
-  <a href="{{ route('courses.create') }}"
+  <a href="{{ route('admin.courses.create') }}"
      class="mb-4 inline-block bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded">+ Tambah Course</a>
 
   <table class="w-full text-sm border">
@@ -29,8 +29,8 @@
         <td class="border px-3 py-2">{{ $course->category }}</td>
         <td class="border px-3 py-2">{{ $course->level }}</td>
         <td class="border px-3 py-2">
-          <a href="{{ route('courses.edit', $course) }}" class="text-blue-500 hover:underline mr-2">Edit</a>
-          <form action="{{ route('courses.destroy', $course) }}" method="POST" class="inline-block"
+          <a href="{{ route('admin.courses.edit', $course) }}" class="text-blue-500 hover:underline mr-2">Edit</a>
+          <form action="{{ route('admin.courses.destroy', $course) }}" method="POST" class="inline-block"
                 onsubmit="return confirm('Yakin hapus course ini?')">
             @csrf @method('DELETE')
             <button class="text-red-500 hover:underline">Hapus</button>

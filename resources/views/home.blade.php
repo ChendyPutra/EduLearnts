@@ -21,7 +21,7 @@
 
     <!-- Ilustrasi -->
     <div class="md:w-1/2 animate-fade-in-up">
-      <img src="{{ asset('images/hero-robot.png') }}" alt="Ilustrasi Edu" class="rounded-xl shadow-xl w-full">
+      <img src="{{ asset('https://tse2.mm.bing.net/th/id/OIP.focHpRcmB9ZvaY7XSb99LgHaEK?r=0&rs=1&pid=ImgDetMain&o=7&rm=3') }}" alt="Ilustrasi Edu" class="rounded-xl shadow-xl w-full">
     </div>
 
   </div>

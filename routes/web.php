@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\CourseController as AdminCourseController;
 use App\Http\Controllers\Admin\ModuleController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\QuizController;
+use App\Http\Controllers\EnrollmentController;
 use App\Http\Middleware\IsSuperAdmin;
 
 /*
@@ -26,7 +27,7 @@ Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 
 /*
 |--------------------------------------------------------------------------
-| DASHBOARD & PROFIL SISWA
+| DASHBOARD & PROFIL SISWA (BREEZE)
 |--------------------------------------------------------------------------
 */
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -35,6 +36,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/courses/{course}', [CourseController::class, 'show'])->name('courses.show');
+    Route::post('/enrollments', [EnrollmentController::class, 'store'])->name('enrollments.store');
+
 });
 
 /*
@@ -49,14 +52,14 @@ Route::prefix('admin')->middleware('guest:admin')->group(function () {
 
 /*
 |--------------------------------------------------------------------------
-| ADMIN PANEL (Setelah Login)
+| ADMIN PANEL (SETELAH LOGIN)
 |--------------------------------------------------------------------------
 */
 Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
     Route::get('/dashboard', [AdminAuthController::class, 'dashboard'])->name('admin.dashboard');
 
-    // === COURSES ===
+    // === COURSE ===
     Route::get('/courses', [AdminCourseController::class, 'index'])->name('admin.courses.index');
     Route::get('/courses/create', [AdminCourseController::class, 'create'])->name('admin.courses.create');
     Route::post('/courses', [AdminCourseController::class, 'store'])->name('admin.courses.store');
@@ -65,7 +68,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::put('/courses/{course}', [AdminCourseController::class, 'update'])->name('admin.courses.update');
     Route::delete('/courses/{course}', [AdminCourseController::class, 'destroy'])->name('admin.courses.destroy');
 
-    // === MODULES (per Course) ===
+    // === MODULES ===
     Route::get('/courses/{course}/modules', [ModuleController::class, 'index'])->name('admin.modules.index');
     Route::get('/courses/{course}/modules/create', [ModuleController::class, 'create'])->name('admin.modules.create');
     Route::post('/courses/{course}/modules', [ModuleController::class, 'store'])->name('admin.modules.store');
@@ -97,7 +100,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
 | SUPERADMIN - CRUD ADMIN
 |--------------------------------------------------------------------------
 */
-Route::middleware(['auth:admin', IsSuperAdmin::class])->group(function () {
+Route::prefix('admin')->middleware(['auth:admin', IsSuperAdmin::class])->group(function () {
     Route::get('/admins', [AdminManageController::class, 'index'])->name('admin.index');
     Route::get('/admins/create', [AdminManageController::class, 'create'])->name('admin.create');
     Route::post('/admins', [AdminManageController::class, 'store'])->name('admin.store');
@@ -108,7 +111,7 @@ Route::middleware(['auth:admin', IsSuperAdmin::class])->group(function () {
 
 /*
 |--------------------------------------------------------------------------
-| AUTH BAWAAN BREEZE (Siswa Register/Login)
+| AUTH BAWAAN BREEZE (REGISTER & LOGIN SISWA)
 |--------------------------------------------------------------------------
 */
 require __DIR__.'/auth.php';

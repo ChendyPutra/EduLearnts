@@ -9,21 +9,15 @@ use Symfony\Component\HttpFoundation\Response;
 
 class IsSuperAdmin
 {
-     public function handle(Request $request, Closure $next, ...$guards): Response
+    public function handle(Request $request, Closure $next): Response
     {
-        $guards = empty($guards) ? [null] : $guards;
+        $admin = Auth::guard('admin')->user();
 
-        foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
-                // ⬇️ Redirect berdasarkan guard
-                return match ($guard) {
-                    'admin' => redirect()->route('admin.dashboard'),
-                    default => redirect('/dashboard'),
-                };
-            }
+        // Cek apakah admin login dan punya role superadmin
+        if (!$admin || $admin->role !== 'superadmin') {
+            abort(403, 'Akses hanya untuk superadmin.');
         }
 
         return $next($request);
     }
-
 }

@@ -8,7 +8,7 @@
     <div class="bg-green-100 text-green-700 px-4 py-2 mb-4 rounded">{{ session('success') }}</div>
   @endif
 
-  <a href="{{ route('products.create') }}"
+  <a href="{{ route('admin.products.create') }}"
      class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 mb-4 inline-block">
     + Tambah Produk
   </a>
@@ -26,9 +26,9 @@
            class="text-blue-600 underline text-sm mb-2">Buka di Marketplace</a>
 
         <div class="mt-auto flex justify-between items-center">
-          <a href="{{ route('products.edit', $product) }}"
+          <a href="{{ route('admin.products.edit', $product) }}"
              class="text-blue-500 hover:underline text-sm">Edit</a>
-          <form action="{{ route('products.destroy', $product) }}" method="POST"
+          <form action="{{ route('admin.products.destroy', $product) }}" method="POST"
                 onsubmit="return confirm('Yakin ingin menghapus produk ini?')">
             @csrf @method('DELETE')
             <button class="text-red-500 hover:underline text-sm">Hapus</button>

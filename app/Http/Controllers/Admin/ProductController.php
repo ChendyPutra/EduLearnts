@@ -38,7 +38,7 @@ class ProductController extends Controller
             'image' => $path,
         ]);
 
-        return redirect()->route('products.index')->with('success', 'Produk berhasil ditambahkan.');
+        return redirect()->route('admin.products.index')->with('success', 'Produk berhasil ditambahkan.');
     }
 
     public function edit(Product $product)
@@ -67,7 +67,7 @@ class ProductController extends Controller
             'image' => $product->image,
         ]);
 
-        return redirect()->route('products.index')->with('success', 'Produk diperbarui.');
+        return redirect()->route('admin.products.index')->with('success', 'Produk diperbarui.');
     }
 
     public function destroy(Product $product)

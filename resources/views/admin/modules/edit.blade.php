@@ -4,7 +4,7 @@
 <div class="max-w-2xl mx-auto bg-white p-6 rounded shadow">
   <h2 class="text-xl font-bold text-indigo-700 mb-4">Edit Modul - {{ $course->title }}</h2>
 
-  <form method="POST" action="{{ route('modules.update', [$course, $module]) }}">
+  <form method="POST" action="{{ route('admin.modules.update', [$course, $module]) }}">
     @csrf @method('PUT')
 
     <div class="mb-4">
@@ -31,7 +31,7 @@
     </div>
 
     <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded">Update</button>
-    <a href="{{ route('modules.index', $course) }}" class="ml-4 text-gray-600 hover:underline">Batal</a>
+    <a href="{{ route('admin.modules.index', $course) }}" class="ml-4 text-gray-600 hover:underline">Batal</a>
   </form>
 </div>
 @endsection

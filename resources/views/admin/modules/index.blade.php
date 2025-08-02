@@ -10,7 +10,7 @@
     <div class="bg-green-100 text-green-800 px-4 py-2 rounded mb-4">{{ session('success') }}</div>
   @endif
 
-  <a href="{{ route('modules.create', $course) }}"
+  <a href="{{ route('admin.modules.create', $course) }}"
      class="mb-4 inline-block bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded">
     + Tambah Modul
   </a>
@@ -39,8 +39,8 @@
             @endif
           </td>
           <td class="border px-3 py-2">
-            <a href="{{ route('modules.edit', [$course, $module]) }}" class="text-blue-500 hover:underline">Edit</a>
-            <form action="{{ route('modules.destroy', [$course, $module]) }}" method="POST" class="inline-block ml-2"
+            <a href="{{ route('admin.modules.edit', [$course, $module]) }}" class="text-blue-500 hover:underline">Edit</a>
+            <form action="{{ route('admin.modules.destroy', [$course, $module]) }}" method="POST" class="inline-block ml-2"
                   onsubmit="return confirm('Yakin hapus modul ini?')">
               @csrf @method('DELETE')
               <button class="text-red-500 hover:underline">Hapus</button>

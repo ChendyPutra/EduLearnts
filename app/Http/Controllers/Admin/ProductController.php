@@ -48,24 +48,15 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
-        $request->validate([
-            'title' => 'required',
-            'description' => 'nullable',
-            'marketplace_link' => 'required|url',
-            'image' => 'nullable|image|max:2048',
-        ]);
+       $data = $request->only(['title', 'description', 'marketplace_link']);
 
-        if ($request->hasFile('image')) {
-            if ($product->image) Storage::disk('public')->delete($product->image);
-            $product->image = $request->file('image')->store('products', 'public');
-        }
+if ($request->hasFile('image')) {
+    if ($product->image) Storage::disk('public')->delete($product->image);
+    $data['image'] = $request->file('image')->store('products', 'public');
+}
 
-        $product->update([
-            'title' => $request->title,
-            'description' => $request->description,
-            'marketplace_link' => $request->marketplace_link,
-            'image' => $product->image,
-        ]);
+$product->update($data);
+
 
         return redirect()->route('admin.products.index')->with('success', 'Produk diperbarui.');
     }

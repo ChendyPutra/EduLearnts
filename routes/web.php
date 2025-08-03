@@ -13,6 +13,8 @@ use App\Http\Controllers\Admin\ModuleController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\QuizController;
 use App\Http\Controllers\EnrollmentController;
+use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\StudentQuizController;
 use App\Http\Middleware\IsSuperAdmin;
 
 /*
@@ -20,10 +22,12 @@ use App\Http\Middleware\IsSuperAdmin;
 | HALAMAN PUBLIK
 |--------------------------------------------------------------------------
 */
-Route::get('/', fn () => view('home'))->name('home');
+Route::get('/', fn() => view('home'))->name('home');
 Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
 Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');
+Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
+
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +42,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/courses/{course}', [CourseController::class, 'show'])->name('courses.show');
     Route::post('/enrollments', [EnrollmentController::class, 'store'])->name('enrollments.store');
 
+    Route::get('/quiz/{module}', [StudentQuizController::class, 'showQuizForm'])->name('quiz.show');
+    Route::post('/quiz/{module}', [StudentQuizController::class, 'submitQuiz'])->name('quiz.submit');
 });
 
 /*
@@ -93,6 +99,8 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::get('/quizzes/{quiz}/edit', [QuizController::class, 'edit'])->name('admin.quizzes.edit');
     Route::put('/quizzes/{quiz}', [QuizController::class, 'update'])->name('admin.quizzes.update');
     Route::delete('/quizzes/{quiz}', [QuizController::class, 'destroy'])->name('admin.quizzes.destroy');
+    Route::get('/admin/feedback', [FeedbackController::class, 'index'])->name('admin.feedback.index');
+
 });
 
 /*
@@ -114,4 +122,4 @@ Route::prefix('admin')->middleware(['auth:admin', IsSuperAdmin::class])->group(f
 | AUTH BAWAAN BREEZE (REGISTER & LOGIN SISWA)
 |--------------------------------------------------------------------------
 */
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

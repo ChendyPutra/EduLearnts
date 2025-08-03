@@ -106,7 +106,7 @@
   </div>
 </section>
 
-<!-- SECTION: Toko EduLearnt -->
+<!-- SECTION: Toko EduLearnt + Link Marketplace -->
 <section class="bg-indigo-50 py-24">
   <div class="max-w-6xl mx-auto px-6 text-center">
     <h2 class="text-3xl font-bold text-indigo-700 mb-10">Produk Populer di Toko Kami</h2>
@@ -115,19 +115,42 @@
         <img src="https://via.placeholder.com/300x200" class="rounded mb-4 w-full h-40 object-cover" alt="Kit 1">
         <h3 class="font-semibold text-indigo-700 mb-2">Starter Kit Coding</h3>
         <p class="text-sm text-gray-500">Belajar dasar pemrograman dengan proyek nyata.</p>
+        <a href="https://shopee.co.id/edulearnt-official" target="_blank" class="text-indigo-600 text-sm hover:underline mt-2 block">
+    Beli di Shopee
+</a>
+<a href="https://tokopedia.link/edulearnt" target="_blank" class="text-green-600 text-sm hover:underline">
+    Beli di Tokopedia
+</a>
+
       </div>
       <div class="bg-white rounded-xl shadow hover:shadow-lg p-6">
         <img src="https://via.placeholder.com/300x200" class="rounded mb-4 w-full h-40 object-cover" alt="Kit 2">
         <h3 class="font-semibold text-indigo-700 mb-2">AI Mini Project Kit</h3>
         <p class="text-sm text-gray-500">Eksperimen dengan kecerdasan buatan sederhana di rumah.</p>
+        <a href="https://shopee.co.id/edulearnt-official" target="_blank" class="text-indigo-600 text-sm hover:underline mt-2 block">
+    Beli di Shopee
+</a>
+<a href="https://tokopedia.link/edulearnt" target="_blank" class="text-green-600 text-sm hover:underline">
+    Beli di Tokopedia
+</a>
+
       </div>
       <div class="bg-white rounded-xl shadow hover:shadow-lg p-6">
         <img src="https://via.placeholder.com/300x200" class="rounded mb-4 w-full h-40 object-cover" alt="Kit 3">
         <h3 class="font-semibold text-indigo-700 mb-2">Robotika Dasar</h3>
         <p class="text-sm text-gray-500">Bangun robot kecil dan pelajari logika pergerakannya.</p>
+        <a href="https://shopee.co.id/edulearnt-official" target="_blank" class="text-indigo-600 text-sm hover:underline mt-2 block">
+    Beli di Shopee
+</a>
+<a href="https://tokopedia.link/edulearnt" target="_blank" class="text-green-600 text-sm hover:underline">
+    Beli di Tokopedia
+</a>
       </div>
     </div>
     <a href="{{ route('shop.index') }}" class="mt-8 inline-block bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition">Lihat Semua Produk</a>
+    <div class="mt-6 space-x-4">
+      
+    </div>
   </div>
 </section>
 
@@ -145,6 +168,9 @@
         <p class="mt-4 font-semibold text-indigo-600">— Andi, Siswa SMP</p>
       </div>
     </div>
+    <div class="mt-12">
+      <iframe class="mx-auto rounded-xl shadow-xl w-full max-w-xl aspect-video" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+    </div>
   </div>
 </section>
 
@@ -159,4 +185,26 @@
     </a>
   </div>
 </section>
+
+<!-- FEEDBACK SECTION -->
+<section class="bg-white py-24">
+  <div class="max-w-xl mx-auto px-6">
+    <h2 class="text-2xl font-bold text-indigo-700 mb-6 text-center">Tinggalkan Masukan Anda</h2>
+    <form action="{{ route('feedback.store') }}" method="POST" class="space-y-4">
+      @csrf
+      <div>
+        <label for="name" class="block text-sm font-medium text-gray-700">Nama</label>
+        <input type="text" name="name" id="name" required class="mt-1 w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+      </div>
+      <div>
+        <label for="message" class="block text-sm font-medium text-gray-700">Pesan / Saran</label>
+        <textarea name="message" id="message" rows="4" required class="mt-1 w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-700 transition">Kirim</button>
+      </div>
+    </form>
+  </div>
+</section>
+
 @endsection

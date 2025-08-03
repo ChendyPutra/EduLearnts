@@ -13,10 +13,17 @@
       <h2 class="text-lg font-semibold text-pink-600">🛍️ Toko</h2>
       <p class="text-sm text-gray-600">Kit edukasi untuk mendukung belajar</p>
     </a>
-    <a href="/quiz" class="bg-white border hover:shadow-lg transition p-4 rounded-lg text-center">
-      <h2 class="text-lg font-semibold text-green-600">📝 Kuis</h2>
-      <p class="text-sm text-gray-600">Uji kemampuanmu sekarang!</p>
-    </a>
+    @foreach ($enrollments as $enroll)
+  @foreach ($enroll->course->modules as $mod)
+    @if ($mod->quizzes->count())
+      <a href="{{ route('quiz.show', $mod->id) }}"
+         class="inline-block mt-2 text-sm text-indigo-600 hover:underline">
+        Kerjakan Kuis {{ $mod->title }}
+      </a>
+    @endif
+  @endforeach
+@endforeach
+
   </div>
 
   <div class="bg-white border p-4 rounded-lg shadow">

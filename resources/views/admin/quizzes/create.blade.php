@@ -6,6 +6,7 @@
 
 <form action="{{ route('admin.quizzes.store') }}" method="POST">
     @csrf
+    <input type="hidden" name="module_id" value="{{ $module->id }}">
 
     <div class="mb-4">
       <label class="block font-medium">Pertanyaan</label>
